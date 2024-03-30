@@ -1,0 +1,35 @@
+DOCUMENTAÇÃO DO FUNCIONAMENTO DO CÓDIGO POR ORDEM DE EXECUÇÃO
+    Na primeira linha do código criamos uma constante com identificador "enterButton" que recebe o elemento HTML input do tipo button cujo valor é button.
+
+    Na segunda linha do código referenciamos a constante "enterButton" e adicionamos a ela um evento DOM, esse evento se ativará após o click  do mouse no botão e chamará a função "send".
+
+    Na quarta linha do código foi criada uma constante com identificador "morseAlphaNum", que por sua vez recebe um objeto onde suas propriedades são as letra e números utilizados no alfabeto português, enquanto seus valores são seus respectivos códigos na linguagem Morse.
+    (Foi optado por utilizar um objeto ao invés de uma lista por poder armazenar o valor do alfabeto latino e sua conrespondência em morse em apenas uma estrutura).
+
+    Na quinnta linha do código foi criada uma constante com identificador "outputText" que recebe um paragrafo HTML criado.
+
+    Na sexta linha foi criada uma constante com identificador "output" onde recebe uma div HTML responsável pela mostragem de resultados na página. Foi utilizado como busca do elemnto o "querySelector" que por sua vez utiliza a sintaxe do CSS para referenciar elemntos HTML.
+
+    Na linha 16 temos a primeira função a ser executada. Ela é ativa ao usuário precionar o botão "enter" na página.
+        A função, inicialmente cria uma constante com identificador "textCode" que recebe o elemento input do tipo text, onde ficará armazenado os caractéres que o usuário deseja traduzir.
+
+        Na linha 18 referenciamos a constante "outputText" e alteramos os valores de texto que ela possui, atualizando-os para uma string vazia.(Na primeira instância de execução da função essa linha se monstra inútil visto que ainda não foi atribuido nenhum valor litaral para a constante outputText, logo se torna redundante).
+
+        Na linha 20 temos uma estruturade validação, onde foi usado uma estrutura condicional (if, else). A mesma testa se o tamanho da string da caixa, onde o usuário deve inserir os caractéres, é igual a 0, ou seja, está vazia. Caso essa expressão seja verdadeira será mostrado um alerta na tela do usuário informando um erro indicando que o campo está vazio.Caso contrário é iniciado o  processo de analise e manipulação dos dados dentro da caixa de texto.
+
+            Na linha 24 temos outro pocesso de validação, onde verifica se a string inserida na caixa de texto é uma letra, para isso é chamada uma função chamada "isLetter()" onde a mesma verificará se o parametro indicado entre parenteses é uma letra, caso seja retornará True, do contrário, teremos False.
+                *Função isLetter*:
+                        A função localiza-se na linha 8 do código.
+                        Recebe apenas um parametro origatório, sendo a string a ser analizada.
+                        a função comtém apenas uma validação simples.
+                        a primeira expressão verifica se o primeiro caractére da string, passada no paramentro, sem espaços nas estremidades é igual a um dos dois caracteres presente no código morse. Se sim é retornado false, se não é retornado true.
+
+            Caso a função retorne True é iniciado o processo de analise das letras enviadas.
+            O processo se inicia com um loop for que analizará cada caractere presente na string "textCode.value". Para isso é declarada uma constante "index" que receberá os indicies da string.
+            Dentro desse loop está presente outro que, por sua vez, pecorrerá todas as propriedades do objeto morseAlphaNum. Para isso foi declarada uma constante "key" que receberá o  nome de cada propriedade presente em morseAlphaNum.
+            Dentro do loop for de morseAlphaNum temos uma validação composta  que testará se a letra escrita pelo usuário possui alguma correspodente entre as propriedade de morseAlphaNum.Para referinciar a letra especifica da palavra/frase escrita pelo usuário, é usada a estrutura [index] onde indicará qual a letra a ser comparada. Já para o morseAlphaNum é usada apenas a constante "key" que, como dito acima, receberá os nomes das propriedades(nesse caso as letras do alfabeto português). 
+            
+                Caso retorne True será concatenado ao texto presente no paragrafo criado anteriomente uma string formatada com crases e um place holder que contenha o valor da propriedade, anteriormente validado. Como só a uma letra para cada código morse, torna-se desnecessária a validação de outras instâncias uma vez ja encontrada a letra. Devido a isso foi utilizado um break.  
+
+                Caso retor False, terá uma segunda validação qe caso indicie da string aponte para um espasso vazio isso indica que a palavra acabou. Por esse motivo concatenamos no texto do tparagrafo criado anteriormente(outputText) uma "/", e como a palavra ja acabou usaremos um break para que ele não inprima diversas barras.
+
